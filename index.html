@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weyzes | GTA 5 RP Grapeseed</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* 🔥 Дымовой фон */
+.smoke {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255,0,0,0.15) 0%, rgba(0,0,0,1) 60%);
+    animation: smokeMove 25s linear infinite;
+    z-index: -1;
+}
+
+@keyframes smokeMove {
+    0% { transform: translate(-25%, -25%) rotate(0deg); }
+    50% { transform: translate(-20%, -30%) rotate(180deg); }
+    100% { transform: translate(-25%, -25%) rotate(360deg); }
+}
+
+header {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 70px;
+    letter-spacing: 8px;
+    color: #ff0000;
+    text-shadow: 0 0 20px red, 0 0 40px darkred;
+}
+
+header p {
+    color: #aaa;
+    font-size: 18px;
+}
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #111;
+    padding: 30px;
+    width: 260px;
+    border-radius: 15px;
+    border: 1px solid red;
+    box-shadow: 0 0 20px rgba(255,0,0,0.4);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 40px rgba(255,0,0,0.8);
+}
+
+.card h3 {
+    color: #ff0000;
+    margin: 0;
+}
+
+.discord-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 18px 40px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 50px;
+    box-shadow: 0 0 25px red;
+    transition: 0.3s;
+}
+
+.discord-button:hover {
+    background: darkred;
+    box-shadow: 0 0 45px red;
+}
+
+.widget-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    margin-top: 60px;
+    padding: 20px;
+    background: #0a0a0a;
+    color: #555;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="smoke"></div>
+
+<header>
+    <h1>WEYZES</h1>
+    <p>GTA 5 RP | Grapeseed | Crime Mafia</p>
+</header>
+
+<div class="section">
+    <h2>Руководство</h2>
+    <div class="cards">
+        
+        <div class="card">
+            <h3>👑 ERONCHICK</h3>
+            <p>Leader</p>
+        </div>
+
+        <div class="card">
+            <h3>⚔ Ceron Cheba</h3>
+            <p>Deputy Leader</p>
+        </div>
+
+        <div class="card">
+            <h3>🔥 Lkittee</h3>
+            <p>Deputy Leader</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="section">
+    <h2>Наш Discord</h2>
+    
+    <a class="discord-button" href="https://discord.gg/akKSc4cRzK" target="_blank">
+        Вступить в Discord
+    </a>
+
+    <div class="widget-container">
+        <iframe 
+            src="https://discord.com/widget?id=1476896707974266982&theme=dark" 
+            width="350" 
+            height="500" 
+            allowtransparency="true" 
+            frameborder="0" 
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+        </iframe>
+    </div>
+</div>
+
+<footer>
+    © 2026 Weyzes Mafia | GTA 5 RP Grapeseed
+</footer>
+
+</body>
+</html>
