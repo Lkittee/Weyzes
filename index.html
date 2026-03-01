@@ -1,171 +1,877 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weyzes | GTA 5 RP Grapeseed</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KinMoney — Орёл и Решка</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(17, 24, 39, 0.82);
+      --card: rgba(15, 23, 42, 0.9);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #f59e0b;
+      --accent-2: #22d3ee;
+      --danger: #ef4444;
+      --ok: #10b981;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+      --radius: 16px;
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: #000;
-    color: white;
-    overflow-x: hidden;
-}
+    * { box-sizing: border-box; }
 
-/* 🔥 Дымовой фон */
-.smoke {
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(255,0,0,0.15) 0%, rgba(0,0,0,1) 60%);
-    animation: smokeMove 25s linear infinite;
-    z-index: -1;
-}
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(245, 158, 11, 0.25), transparent),
+        radial-gradient(1000px 700px at 95% 10%, rgba(34, 211, 238, 0.18), transparent),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-@keyframes smokeMove {
-    0% { transform: translate(-25%, -25%) rotate(0deg); }
-    50% { transform: translate(-20%, -30%) rotate(180deg); }
-    100% { transform: translate(-25%, -25%) rotate(360deg); }
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
 
-header {
-    padding: 80px 20px;
-    text-align: center;
-}
+    .hero {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(34, 211, 238, 0.1));
+      border: 1px solid rgba(156, 163, 175, 0.25);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-header h1 {
-    font-size: 70px;
-    letter-spacing: 8px;
-    color: #ff0000;
-    text-shadow: 0 0 20px red, 0 0 40px darkred;
-}
+    .title {
+      font-size: clamp(1.7rem, 5vw, 2.8rem);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-header p {
-    color: #aaa;
-    font-size: 18px;
-}
+    .subtitle {
+      color: var(--muted);
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
 
-.section {
-    padding: 60px 20px;
-    text-align: center;
-}
+    .grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
 
-.cards {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
 
-.card {
-    background: #111;
-    padding: 30px;
-    width: 260px;
-    border-radius: 15px;
-    border: 1px solid red;
-    box-shadow: 0 0 20px rgba(255,0,0,0.4);
-    transition: 0.3s;
-}
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
 
-.card:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 40px rgba(255,0,0,0.8);
-}
+    h2, h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
 
-.card h3 {
-    color: #ff0000;
-    margin: 0;
-}
+    .muted { color: var(--muted); }
 
-.discord-button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 18px 40px;
-    background: red;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    border-radius: 50px;
-    box-shadow: 0 0 25px red;
-    transition: 0.3s;
-}
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+    }
 
-.discord-button:hover {
-    background: darkred;
-    box-shadow: 0 0 45px red;
-}
+    input, select, button, textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text);
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
 
-.widget-container {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-}
+    textarea { min-height: 80px; resize: vertical; }
 
-footer {
-    margin-top: 60px;
-    padding: 20px;
-    background: #0a0a0a;
-    color: #555;
-    font-size: 14px;
-}
-</style>
+    button {
+      cursor: pointer;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), #f97316);
+      color: #111827;
+      font-weight: 700;
+      transition: transform 0.12s ease, filter 0.15s ease;
+    }
+
+    button:hover { transform: translateY(-1px); filter: brightness(1.03); }
+    button.secondary { background: linear-gradient(135deg, var(--accent-2), #3b82f6); color: #082f49; }
+    button.ghost { background: rgba(51, 65, 85, 0.7); color: #cbd5e1; }
+    button.danger { background: linear-gradient(135deg, #fb7185, #ef4444); color: #fff; }
+
+    .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .row > * { flex: 1; min-width: 130px; }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(30, 41, 59, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .coin {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 12px auto 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0f172a;
+      background: radial-gradient(circle at 30% 30%, #fde68a, #f59e0b 70%);
+      box-shadow: inset 0 4px 7px rgba(255, 255, 255, 0.35), 0 10px 28px rgba(245, 158, 11, 0.35);
+    }
+
+    .flip {
+      animation: flip 700ms ease;
+    }
+
+    @keyframes flip {
+      0% { transform: rotateY(0deg) scale(1); }
+      50% { transform: rotateY(540deg) scale(1.06); }
+      100% { transform: rotateY(1080deg) scale(1); }
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: rgba(34, 211, 238, 0.18);
+      color: #67e8f9;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .list {
+      max-height: 270px;
+      overflow: auto;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+    }
+
+    .list-item {
+      padding: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .list-item:last-child { border-bottom: none; }
+
+    .badge {
+      font-size: 0.8rem;
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+    }
+
+    .badge.loss { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+
+    .auth-wrap {
+      max-width: 520px;
+      margin: 10vh auto;
+    }
+
+    .hidden { display: none !important; }
+
+    .message {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(30, 41, 59, 0.6);
+    }
+
+    .message.ok { border-color: rgba(16, 185, 129, 0.45); }
+    .message.error { border-color: rgba(239, 68, 68, 0.55); }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding-bottom: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+    }
+  </style>
 </head>
-
 <body>
+  <main class="container">
+    <section id="authSection" class="auth-wrap card hidden">
+      <h1 class="title">🪙 KinMoney</h1>
+      <p class="subtitle">Платформа «Орёл и Решка» с аккаунтом, друзьями, рейтингом и дуэлями.</p>
+      <div id="authMessage"></div>
+      <div class="row">
+        <button id="tabLogin" class="secondary">Войти</button>
+        <button id="tabRegister" class="ghost">Регистрация</button>
+      </div>
 
-<div class="smoke"></div>
+      <form id="loginForm">
+        <label>Никнейм</label>
+        <input required id="loginNick" minlength="3" placeholder="Например, CoinMaster" />
+        <label>Пароль</label>
+        <input required id="loginPassword" type="password" minlength="4" placeholder="••••••" />
+        <button type="submit">Войти в KinMoney</button>
+      </form>
 
-<header>
-    <h1>WEYZES</h1>
-    <p>GTA 5 RP | Grapeseed | Crime Mafia</p>
-</header>
+      <form id="registerForm" class="hidden">
+        <label>Никнейм</label>
+        <input required id="registerNick" minlength="3" placeholder="Уникальный ник" />
+        <label>Пароль</label>
+        <input required id="registerPassword" type="password" minlength="4" placeholder="Минимум 4 символа" />
+        <label>Код друга (необязательно)</label>
+        <input id="registerFriendCode" placeholder="Например, KM-AB12CD" />
+        <button type="submit">Создать аккаунт</button>
+      </form>
+    </section>
 
-<div class="section">
-    <h2>Руководство</h2>
-    <div class="cards">
-        
-        <div class="card">
-            <h3>👑 ERONCHICK</h3>
-            <p>Leader</p>
+    <section id="appSection" class="hidden">
+      <div class="hero">
+        <div>
+          <h1 class="title">🪙 KinMoney</h1>
+          <p class="subtitle">Орёл и Решка, рейтинг по балансу, дуэли с друзьями и развитие аккаунта.</p>
         </div>
-
-        <div class="card">
-            <h3>⚔ Ceron Cheba</h3>
-            <p>Deputy Leader</p>
+        <div>
+          <button id="soundToggle" class="secondary">🔊 Звук включён</button>
+          <button id="logoutBtn" class="danger">Выйти</button>
         </div>
+      </div>
 
-        <div class="card">
-            <h3>🔥 Lkittee</h3>
-            <p>Deputy Leader</p>
+      <div class="grid">
+        <article class="card span-4">
+          <h2>Профиль</h2>
+          <div id="profileStats"></div>
+          <label>Обо мне</label>
+          <textarea id="bioInput" maxlength="200" placeholder="Напиши кратко о себе..."></textarea>
+          <button id="saveBioBtn" class="secondary">Сохранить профиль</button>
+        </article>
+
+        <article class="card span-8">
+          <h2>Игра «Орёл и Решка»</h2>
+          <p class="muted">Делай ставки, прокачивай уровни и активируй бустер монеты.</p>
+          <div class="coin" id="coinVisual">?</div>
+          <div class="row">
+            <div>
+              <label>Ставка</label>
+              <input id="betAmount" type="number" min="1" value="50" />
+            </div>
+            <div>
+              <label>Выбор</label>
+              <select id="coinChoice">
+                <option value="heads">Орёл</option>
+                <option value="tails">Решка</option>
+              </select>
+            </div>
+            <div>
+              <label>Бустер</label>
+              <select id="boosterSelect">
+                <option value="none">Без бустера x1.0</option>
+                <option value="lucky">Lucky x1.3 (цена 50 XP)</option>
+                <option value="risk">Risk x1.6 (цена 100 XP)</option>
+              </select>
+            </div>
+          </div>
+          <button id="flipBtn">Кинуть монету</button>
+          <div id="gameMessage"></div>
+          <div>
+            <span class="pill">Будущее: ежедневные бонусы</span>
+            <span class="pill">Будущее: турниры</span>
+            <span class="pill">Будущее: редкие бустеры</span>
+          </div>
+        </article>
+
+        <article class="card span-6">
+          <h2>Друзья и поиск</h2>
+          <label>Добавить по нику</label>
+          <div class="row">
+            <input id="addFriendNick" placeholder="Ник игрока" />
+            <button id="addFriendNickBtn" class="secondary">Добавить</button>
+          </div>
+          <label>Добавить по коду</label>
+          <div class="row">
+            <input id="addFriendCode" placeholder="KM-XXXXXX" />
+            <button id="addFriendCodeBtn" class="secondary">Добавить</button>
+          </div>
+          <h3>Рекомендуемые игроки</h3>
+          <div id="suggestionsList" class="list"></div>
+          <h3>Мои друзья</h3>
+          <div id="friendsList" class="list"></div>
+        </article>
+
+        <article class="card span-6">
+          <h2>Топ по балансу</h2>
+          <div id="leaderboard" class="list"></div>
+        </article>
+
+        <article class="card span-7">
+          <h2>Соревнования и ставки с игроками</h2>
+          <p class="muted">Выбери оппонента и сумму — система создаст матч «кто угадает монету».</p>
+          <label>Оппонент</label>
+          <select id="duelOpponent"></select>
+          <label>Сумма ставки</label>
+          <input id="duelAmount" type="number" min="1" value="100" />
+          <button id="startDuelBtn">Начать соревнование</button>
+          <div id="duelMessage"></div>
+          <h3>История матчей</h3>
+          <div id="duelHistory" class="list"></div>
+        </article>
+
+        <article class="card span-5">
+          <h2>Репорты</h2>
+          <p class="muted">Если игрок ведёт себя нечестно — отправь репорт.</p>
+          <label>На кого (ник)</label>
+          <input id="reportTarget" placeholder="Ник игрока" />
+          <label>Причина</label>
+          <textarea id="reportReason" maxlength="200" placeholder="Опиши ситуацию..."></textarea>
+          <button id="sendReportBtn" class="danger">Отправить репорт</button>
+          <h3>Мои репорты</h3>
+          <div id="myReports" class="list"></div>
+        </article>
+      </div>
+
+      <footer>KinMoney © 2026 — локальная demo-версия с собственной базой в браузере (LocalStorage).</footer>
+    </section>
+  </main>
+
+  <script>
+    const DB_KEY = 'kinmoney-db-v1';
+    const SESSION_KEY = 'kinmoney-session';
+    const SESSION_TTL_MS = 30 * 60 * 1000;
+
+    const sounds = { enabled: true };
+
+    function uid(prefix = 'id') {
+      return `${prefix}-${Math.random().toString(36).slice(2, 10)}-${Date.now().toString(36)}`;
+    }
+
+    function createFriendCode() {
+      return `KM-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+    }
+
+    function getDB() {
+      const raw = localStorage.getItem(DB_KEY);
+      if (raw) return JSON.parse(raw);
+      const seed = {
+        users: [
+          createUser('CoinPilot', '1234'),
+          createUser('LuckyFox', '1234'),
+          createUser('RiskBird', '1234')
+        ],
+        reports: [],
+        duels: []
+      };
+      seed.users[0].balance = 1800;
+      seed.users[1].balance = 1300;
+      seed.users[2].balance = 2400;
+      saveDB(seed);
+      return seed;
+    }
+
+    function saveDB(db) {
+      localStorage.setItem(DB_KEY, JSON.stringify(db));
+    }
+
+    function createUser(nick, password) {
+      return {
+        id: uid('user'),
+        nick,
+        password,
+        friendCode: createFriendCode(),
+        balance: 1000,
+        xp: 0,
+        level: 1,
+        wins: 0,
+        losses: 0,
+        bio: '',
+        friends: [],
+        createdAt: new Date().toISOString()
+      };
+    }
+
+    function setSession(userId) {
+      localStorage.setItem(SESSION_KEY, JSON.stringify({ userId, expiresAt: Date.now() + SESSION_TTL_MS }));
+    }
+
+    function clearSession() {
+      localStorage.removeItem(SESSION_KEY);
+    }
+
+    function getSession() {
+      const raw = localStorage.getItem(SESSION_KEY);
+      if (!raw) return null;
+      const session = JSON.parse(raw);
+      if (Date.now() > session.expiresAt) {
+        clearSession();
+        return null;
+      }
+      return session;
+    }
+
+    function refreshSession() {
+      const session = getSession();
+      if (!session) return;
+      setSession(session.userId);
+    }
+
+    function findCurrentUser(db) {
+      const session = getSession();
+      if (!session) return null;
+      return db.users.find((u) => u.id === session.userId) || null;
+    }
+
+    function formatMoney(num) {
+      return `${Math.round(num).toLocaleString('ru-RU')} KM`;
+    }
+
+    function levelUpIfNeeded(user) {
+      const needed = user.level * 120;
+      while (user.xp >= user.level * 120) {
+        user.xp -= user.level * 120;
+        user.level += 1;
+        user.balance += 120;
+      }
+      return needed;
+    }
+
+    function showMessage(el, text, type = '') {
+      el.innerHTML = `<div class="message ${type}">${text}</div>`;
+    }
+
+    function beep(type = 'flip') {
+      if (!sounds.enabled) return;
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (type === 'flip') {
+        osc.frequency.value = 420;
+        gain.gain.value = 0.04;
+      } else {
+        osc.frequency.value = 720;
+        gain.gain.value = 0.05;
+      }
+
+      osc.start();
+      osc.stop(ctx.currentTime + 0.12);
+    }
+
+    const authSection = document.getElementById('authSection');
+    const appSection = document.getElementById('appSection');
+
+    const tabLogin = document.getElementById('tabLogin');
+    const tabRegister = document.getElementById('tabRegister');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const authMessage = document.getElementById('authMessage');
+
+    const profileStats = document.getElementById('profileStats');
+    const bioInput = document.getElementById('bioInput');
+    const saveBioBtn = document.getElementById('saveBioBtn');
+
+    const gameMessage = document.getElementById('gameMessage');
+    const coinVisual = document.getElementById('coinVisual');
+
+    const friendsList = document.getElementById('friendsList');
+    const suggestionsList = document.getElementById('suggestionsList');
+    const leaderboard = document.getElementById('leaderboard');
+
+    const duelOpponent = document.getElementById('duelOpponent');
+    const duelMessage = document.getElementById('duelMessage');
+    const duelHistory = document.getElementById('duelHistory');
+
+    const myReports = document.getElementById('myReports');
+    const soundToggle = document.getElementById('soundToggle');
+
+    tabLogin.addEventListener('click', () => {
+      loginForm.classList.remove('hidden');
+      registerForm.classList.add('hidden');
+      tabLogin.className = 'secondary';
+      tabRegister.className = 'ghost';
+      authMessage.innerHTML = '';
+    });
+
+    tabRegister.addEventListener('click', () => {
+      registerForm.classList.remove('hidden');
+      loginForm.classList.add('hidden');
+      tabRegister.className = 'secondary';
+      tabLogin.className = 'ghost';
+      authMessage.innerHTML = '';
+    });
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const db = getDB();
+      const nick = document.getElementById('loginNick').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const user = db.users.find((u) => u.nick.toLowerCase() === nick.toLowerCase() && u.password === password);
+      if (!user) {
+        showMessage(authMessage, 'Неверный ник или пароль.', 'error');
+        return;
+      }
+      setSession(user.id);
+      showApp();
+    });
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const db = getDB();
+      const nick = document.getElementById('registerNick').value.trim();
+      const password = document.getElementById('registerPassword').value;
+      const friendCode = document.getElementById('registerFriendCode').value.trim().toUpperCase();
+
+      if (db.users.some((u) => u.nick.toLowerCase() === nick.toLowerCase())) {
+        showMessage(authMessage, 'Такой ник уже существует.', 'error');
+        return;
+      }
+
+      const user = createUser(nick, password);
+      db.users.push(user);
+
+      if (friendCode) {
+        const inviter = db.users.find((u) => u.friendCode === friendCode && u.id !== user.id);
+        if (inviter && !inviter.friends.includes(user.id)) {
+          inviter.friends.push(user.id);
+          user.friends.push(inviter.id);
+          inviter.balance += 150;
+          user.balance += 80;
+        }
+      }
+
+      saveDB(db);
+      setSession(user.id);
+      showApp();
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      clearSession();
+      showAuth('Вы вышли из аккаунта.');
+    });
+
+    soundToggle.addEventListener('click', () => {
+      sounds.enabled = !sounds.enabled;
+      soundToggle.textContent = sounds.enabled ? '🔊 Звук включён' : '🔈 Звук выключен';
+    });
+
+    saveBioBtn.addEventListener('click', () => {
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+      me.bio = bioInput.value.trim();
+      saveDB(db);
+      renderApp(db, me, 'Профиль обновлён.');
+    });
+
+    document.getElementById('flipBtn').addEventListener('click', () => {
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+
+      const bet = Number(document.getElementById('betAmount').value);
+      const choice = document.getElementById('coinChoice').value;
+      const booster = document.getElementById('boosterSelect').value;
+
+      if (!Number.isFinite(bet) || bet <= 0) {
+        return showMessage(gameMessage, 'Укажи корректную ставку.', 'error');
+      }
+      if (bet > me.balance) {
+        return showMessage(gameMessage, 'Недостаточно средств для ставки.', 'error');
+      }
+
+      const xpCost = booster === 'lucky' ? 50 : booster === 'risk' ? 100 : 0;
+      const mult = booster === 'lucky' ? 1.3 : booster === 'risk' ? 1.6 : 1;
+
+      if (xpCost > me.xp) {
+        return showMessage(gameMessage, `Нужно ${xpCost} XP для выбранного бустера.`, 'error');
+      }
+
+      me.xp -= xpCost;
+
+      const result = Math.random() > 0.5 ? 'heads' : 'tails';
+      const won = result === choice;
+      coinVisual.classList.remove('flip');
+      void coinVisual.offsetWidth;
+      coinVisual.classList.add('flip');
+      beep('flip');
+
+      coinVisual.textContent = result === 'heads' ? 'ОРЁЛ' : 'РЕШКА';
+
+      if (won) {
+        const gain = Math.round(bet * mult);
+        me.balance += gain;
+        me.wins += 1;
+        me.xp += 35;
+        showMessage(gameMessage, `Победа! Выпало ${coinVisual.textContent}. +${gain} KM, +35 XP`, 'ok');
+        beep('notify');
+      } else {
+        me.balance -= bet;
+        me.losses += 1;
+        me.xp += 12;
+        showMessage(gameMessage, `Не повезло. Выпало ${coinVisual.textContent}. -${bet} KM, +12 XP`, 'error');
+      }
+
+      levelUpIfNeeded(me);
+      saveDB(db);
+      refreshSession();
+      renderApp(db, me);
+    });
+
+    document.getElementById('addFriendNickBtn').addEventListener('click', () => {
+      const nick = document.getElementById('addFriendNick').value.trim();
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+
+      const target = db.users.find((u) => u.nick.toLowerCase() === nick.toLowerCase());
+      if (!target || target.id === me.id) return alert('Игрок не найден.');
+      addFriendPair(db, me, target);
+      saveDB(db);
+      renderApp(db, me, `Игрок ${target.nick} добавлен в друзья.`);
+    });
+
+    document.getElementById('addFriendCodeBtn').addEventListener('click', () => {
+      const code = document.getElementById('addFriendCode').value.trim().toUpperCase();
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+
+      const target = db.users.find((u) => u.friendCode === code);
+      if (!target || target.id === me.id) return alert('Код не найден.');
+      addFriendPair(db, me, target);
+      saveDB(db);
+      renderApp(db, me, `По коду добавлен: ${target.nick}.`);
+    });
+
+    function addFriendPair(db, me, target) {
+      if (!me.friends.includes(target.id)) me.friends.push(target.id);
+      if (!target.friends.includes(me.id)) target.friends.push(me.id);
+      me.balance += 25;
+      target.balance += 25;
+    }
+
+    document.getElementById('startDuelBtn').addEventListener('click', () => {
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+
+      const opponentId = duelOpponent.value;
+      const amount = Number(document.getElementById('duelAmount').value);
+      const opp = db.users.find((u) => u.id === opponentId);
+      if (!opp) return showMessage(duelMessage, 'Выбери оппонента.', 'error');
+      if (!Number.isFinite(amount) || amount <= 0) return showMessage(duelMessage, 'Некорректная сумма.', 'error');
+      if (me.balance < amount || opp.balance < amount) return showMessage(duelMessage, 'У кого-то не хватает средств.', 'error');
+
+      const meGuess = Math.random() > 0.5 ? 'heads' : 'tails';
+      const oppGuess = meGuess === 'heads' ? 'tails' : 'heads';
+      const result = Math.random() > 0.5 ? 'heads' : 'tails';
+
+      const meWin = meGuess === result;
+      const winner = meWin ? me : opp;
+      const loser = meWin ? opp : me;
+
+      winner.balance += amount;
+      loser.balance -= amount;
+      winner.wins += 1;
+      loser.losses += 1;
+      winner.xp += 25;
+      loser.xp += 10;
+      levelUpIfNeeded(winner);
+      levelUpIfNeeded(loser);
+
+      db.duels.unshift({
+        id: uid('duel'),
+        createdAt: new Date().toISOString(),
+        amount,
+        playerA: me.id,
+        playerB: opp.id,
+        winnerId: winner.id,
+        result
+      });
+
+      saveDB(db);
+      const outcome = meWin ? `Ты победил ${opp.nick} и забрал ${amount} KM!` : `${opp.nick} победил. Ты потерял ${amount} KM.`;
+      showMessage(duelMessage, `${outcome} Выпало: ${result === 'heads' ? 'Орёл' : 'Решка'}.`, meWin ? 'ok' : 'error');
+      beep('notify');
+      renderApp(db, me);
+    });
+
+    document.getElementById('sendReportBtn').addEventListener('click', () => {
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+
+      const targetNick = document.getElementById('reportTarget').value.trim();
+      const reason = document.getElementById('reportReason').value.trim();
+      if (!targetNick || !reason) return alert('Заполни ник и причину.');
+
+      db.reports.unshift({
+        id: uid('report'),
+        authorId: me.id,
+        targetNick,
+        reason,
+        createdAt: new Date().toISOString()
+      });
+      saveDB(db);
+      document.getElementById('reportReason').value = '';
+      renderApp(db, me, 'Репорт отправлен. Спасибо за помощь в модерации.');
+      beep('notify');
+    });
+
+    function renderApp(db, me, toastText = '') {
+      profileStats.innerHTML = `
+        <div class="stat"><span>Ник</span><strong>${me.nick}</strong></div>
+        <div class="stat"><span>Код</span><strong>${me.friendCode}</strong></div>
+        <div class="stat"><span>Баланс</span><strong>${formatMoney(me.balance)}</strong></div>
+        <div class="stat"><span>Уровень</span><strong>${me.level}</strong></div>
+        <div class="stat"><span>XP</span><strong>${me.xp}</strong></div>
+        <div class="stat"><span>W/L</span><strong>${me.wins}/${me.losses}</strong></div>
+      `;
+      bioInput.value = me.bio || '';
+
+      const sorted = [...db.users].sort((a, b) => b.balance - a.balance);
+      leaderboard.innerHTML = sorted.map((u, i) => `
+        <div class="list-item">
+          <div>${i + 1}. ${u.nick} ${u.id === me.id ? '👑' : ''}</div>
+          <strong>${formatMoney(u.balance)}</strong>
         </div>
+      `).join('');
 
-    </div>
-</div>
+      const myFriends = db.users.filter((u) => me.friends.includes(u.id));
+      friendsList.innerHTML = myFriends.length ? myFriends.map((f) => `
+        <div class="list-item">
+          <div>
+            <strong>${f.nick}</strong><br />
+            <small class="muted">${f.friendCode}</small>
+          </div>
+          <span class="badge">Друг</span>
+        </div>
+      `).join('') : '<div class="list-item muted">Пока нет друзей.</div>';
 
-<div class="section">
-    <h2>Наш Discord</h2>
-    
-    <a class="discord-button" href="https://discord.gg/akKSc4cRzK" target="_blank">
-        Вступить в Discord
-    </a>
+      const suggestions = db.users.filter((u) => u.id !== me.id && !me.friends.includes(u.id)).slice(0, 6);
+      suggestionsList.innerHTML = suggestions.length ? suggestions.map((u) => `
+        <div class="list-item">
+          <div>
+            <strong>${u.nick}</strong><br />
+            <small class="muted">${u.friendCode}</small>
+          </div>
+          <button onclick="quickAdd('${u.id}')" class="ghost" style="width:auto;margin:0">+</button>
+        </div>
+      `).join('') : '<div class="list-item muted">Нет рекомендаций.</div>';
 
-    <div class="widget-container">
-        <iframe 
-            src="https://discord.com/widget?id=1476896707974266982&theme=dark" 
-            width="350" 
-            height="500" 
-            allowtransparency="true" 
-            frameborder="0" 
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-        </iframe>
-    </div>
-</div>
+      duelOpponent.innerHTML = db.users
+        .filter((u) => u.id !== me.id)
+        .map((u) => `<option value="${u.id}">${u.nick} (${formatMoney(u.balance)})</option>`)
+        .join('');
 
-<footer>
-    © 2026 Weyzes Mafia | GTA 5 RP Grapeseed
-</footer>
+      const history = db.duels.filter((d) => d.playerA === me.id || d.playerB === me.id).slice(0, 8);
+      duelHistory.innerHTML = history.length ? history.map((d) => {
+        const enemyId = d.playerA === me.id ? d.playerB : d.playerA;
+        const enemy = db.users.find((u) => u.id === enemyId);
+        const isWin = d.winnerId === me.id;
+        return `<div class="list-item">
+          <div>
+            vs ${enemy ? enemy.nick : 'Unknown'} · ${formatMoney(d.amount)}<br />
+            <small class="muted">${new Date(d.createdAt).toLocaleString('ru-RU')}</small>
+          </div>
+          <span class="badge ${isWin ? '' : 'loss'}">${isWin ? 'Победа' : 'Поражение'}</span>
+        </div>`;
+      }).join('') : '<div class="list-item muted">Матчей ещё нет.</div>';
 
+      const reports = db.reports.filter((r) => r.authorId === me.id).slice(0, 6);
+      myReports.innerHTML = reports.length ? reports.map((r) => `
+        <div class="list-item">
+          <div>
+            На: <strong>${r.targetNick}</strong><br />
+            <small class="muted">${r.reason}</small>
+          </div>
+          <small class="muted">${new Date(r.createdAt).toLocaleDateString('ru-RU')}</small>
+        </div>
+      `).join('') : '<div class="list-item muted">Ты ещё не отправлял репорты.</div>';
+
+      if (toastText) {
+        showMessage(gameMessage, toastText, 'ok');
+      }
+    }
+
+    window.quickAdd = (targetId) => {
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+      const target = db.users.find((u) => u.id === targetId);
+      if (!target) return;
+      addFriendPair(db, me, target);
+      saveDB(db);
+      renderApp(db, me, `${target.nick} добавлен через рекомендации.`);
+      beep('notify');
+    };
+
+    function showAuth(text = '') {
+      appSection.classList.add('hidden');
+      authSection.classList.remove('hidden');
+      if (text) showMessage(authMessage, text, 'ok');
+    }
+
+    function showApp() {
+      const db = getDB();
+      const me = findCurrentUser(db);
+      if (!me) return showAuth('Сессия истекла, войдите снова.');
+      authSection.classList.add('hidden');
+      appSection.classList.remove('hidden');
+      refreshSession();
+      renderApp(db, me);
+    }
+
+    document.addEventListener('click', () => refreshSession());
+    document.addEventListener('keydown', () => refreshSession());
+
+    if (getSession()) {
+      showApp();
+    } else {
+      showAuth();
+    }
+  </script>
 </body>
 </html>
